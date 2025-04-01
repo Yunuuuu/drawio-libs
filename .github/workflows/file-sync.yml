@@ -12,13 +12,25 @@ jobs:
       - uses: actions/checkout@v3
 
       - run: ./.github/sync.sh jgraph/drawio-libs libs/chart-icons.xml libs/charts/
+      
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "update chart-icons"
 
       - run: ./.github/sync.sh duerrsimon/bioicons static/drawio-lib/Bioicons-Scientific_graphs.xml libs/charts/
 
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "update Bioicons-Scientific_graphs"
+
       - run: ./.github/sync.sh jgraph/drawio-libs README.md ./
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "update README"
 
       - run: ./.github/sync.sh jgraph/drawio-libs LICENSE ./
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "update KrakenTools: make_ktaxonomy.py"
+          commit_message: "update LICENSE"
