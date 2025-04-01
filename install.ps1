@@ -88,6 +88,6 @@ $Task = New-ScheduledTask `
     -Action $Action `
     -Settings $MyStset `
     -Principal $Principal `
-    -Description "Update drawio library in the backgroud"
+    -Description "Update drawio library in the background"
 
 RegisterScheduledTask "drawio-libs" $Task
