@@ -60,14 +60,8 @@ $CIMTriggerClass = Get-CimClass -ClassName MSFT_TaskEventTrigger `
 
 $Stset = New-ScheduledTaskSettingsSet `
     -StartWhenAvailable `
-    -DontStopIfGoingOnBatteries `
-    -WakeToRun `
-    -DontStopOnIdleEnd `
-    -RestartOnIdle `
     -Hidden `
-    -ExecutionTimeLimit (New-TimeSpan -Seconds 0) `
-    -RestartInterval (New-TimeSpan -Minutes 1) `
-    -RestartCount 3
+    -ExecutionTimeLimit (New-TimeSpan -Seconds 0)
 
 $UserId = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Principal = New-ScheduledTaskPrincipal `
@@ -76,11 +70,10 @@ $Principal = New-ScheduledTaskPrincipal `
     -RunLevel "Limited" #Limited
 
 $Action = New-ScheduledTaskAction `
-    -Execute git `
-    -Argument '--git-dir="$PSScriptRoot/.git" pull'
+    -Execute "$((Get-Command -Name git.exe).Source)" `
+    -Argument "--git-dir=$PSScriptRoot\.git pull"
 
-$Trigger = New-ScheduledTaskTrigger -Daily
-$Trigger.Delay = "PT15S"
+$Trigger = New-ScheduledTaskTrigger -Daily -At 3am
 $MyStset = $Stset.Clone()
 $MyStset.RunOnlyIfNetworkAvailable = $true
 $Task = New-ScheduledTask `
