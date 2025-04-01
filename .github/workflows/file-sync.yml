@@ -11,7 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: ./.github/sync.sh jgraph/drawio-libs libs/chart-icons.xml libs/
+      - run: ./.github/sync.sh jgraph/drawio-libs libs/chart-icons.xml libs/charts/
+
+      - run: ./.github/sync.sh duerrsimon/bioicons static/drawio-lib/Bioicons-Scientific_graphs.xml libs/charts/
 
       - run: ./.github/sync.sh jgraph/drawio-libs README.md ./
 
