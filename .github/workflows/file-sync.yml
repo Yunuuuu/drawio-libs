@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   schedule:
     # At 03:03 on Tuesday
-    - cron: '3 3 * * 2'
+    - cron: "3 3 * * 2"
 
 jobs:
   sync:
@@ -12,7 +12,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - run: ./.github/sync.sh jgraph/drawio-libs libs/chart-icons.xml libs/
-      
+
+      - run: ./.github/sync.sh jgraph/drawio-libs README.md ./
+
+      - run: ./.github/sync.sh jgraph/drawio-libs LICENSE ./
+
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "update KrakenTools: make_ktaxonomy.py"
