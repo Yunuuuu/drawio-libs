@@ -76,8 +76,8 @@ $Principal = New-ScheduledTaskPrincipal `
     -RunLevel "Limited" #Limited
 
 $Action = New-ScheduledTaskAction `
-    -Execute PowerShell `
-    -Argument '-ExecutionPolicy Bypass -WindowStyle Hidden -File "$PSScriptRoot/git-pull.ps1"'
+    -Execute git `
+    -Argument '--git-dir="$PSScriptRoot/.git" pull'
 
 $Trigger = New-ScheduledTaskTrigger -Daily
 $Trigger.Delay = "PT15S"
