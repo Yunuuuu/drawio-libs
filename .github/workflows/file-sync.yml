@@ -23,7 +23,7 @@ jobs:
         with:
           commit_message: "update Bioicons-Scientific_graphs"
 
-      - run: ./.github/sync.sh duerrsimon/bioicons static/drawio-lib/Bioicons-Lab_apparatus.xml libs/charts/
+      - run: ./.github/sync.sh duerrsimon/bioicons static/drawio-lib/Bioicons-Lab_apparatus.xml libs/
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
